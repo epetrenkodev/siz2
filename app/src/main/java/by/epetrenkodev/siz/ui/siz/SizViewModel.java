@@ -17,16 +17,9 @@ public class SizViewModel extends ViewModel {
         loadSizList();
     }
 
-    private void loadSizList() {
+    public void loadSizList() {
         sizList = new SizRepository().read();
         updateSizList();
-    }
-
-    public void createSiz(String name, Date beginDate, int period) {
-        SizItem sizItem = new SizItem(name, beginDate, period);
-        sizList.add(sizItem);
-        updateSizList();
-        new SizRepository().create(sizItem);
     }
 
     public void updateSiz(int position, String name, Date beginDate, int period) {

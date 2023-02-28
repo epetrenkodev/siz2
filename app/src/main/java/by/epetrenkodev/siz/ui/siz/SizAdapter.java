@@ -37,7 +37,7 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
         view = inflater.inflate(viewType, parent, false);
         ViewHolder holder = new ViewHolder(view);
         if (viewType == R.layout.element_add_botton)
-            holder.addButton.setOnClickListener(view1 -> onClickAddListener.onAddClick());
+            holder.addButton.setOnClickListener(onClickAddListener::onAddClick);
         return new ViewHolder(view);
     }
 
@@ -91,7 +91,7 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
     }
 
     interface OnAddClickListener {
-        void onAddClick();
+        void onAddClick(View view);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
