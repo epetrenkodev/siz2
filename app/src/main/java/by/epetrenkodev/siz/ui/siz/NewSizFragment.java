@@ -6,7 +6,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,10 +15,8 @@ import androidx.navigation.Navigation;
 import java.util.Calendar;
 import java.util.Date;
 
-import by.epetrenkodev.siz.R;
 import by.epetrenkodev.siz.data.SizRepository;
 import by.epetrenkodev.siz.databinding.FragmentNewSizBinding;
-
 
 public class NewSizFragment extends Fragment {
 
@@ -36,7 +33,6 @@ public class NewSizFragment extends Fragment {
 
         binding.selectDateView.beginMonth.setSelection(calendar.get(Calendar.MONTH));
         binding.selectDateView.beginYear.setText(String.valueOf(calendar.get(Calendar.YEAR)));
-
         binding.selectDateView.todayButton.setOnClickListener(this::todayButton_onClick);
         binding.newSizAddButton.setOnClickListener(this::onAddClick);
         binding.newSizAddButton.setEnabled(false);

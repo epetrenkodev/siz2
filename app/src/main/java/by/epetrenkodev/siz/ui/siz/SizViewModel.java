@@ -37,7 +37,6 @@ public class SizViewModel extends ViewModel {
     }
 
     private void updateSizList() {
-        //Collections.sort(sizList, (o1, o2) -> o1.getEndDate().compareTo(o2.getEndDate()));
         sizList.sort((o1, o2) -> o1.getEndDate().compareTo(o2.getEndDate()));
         data.setValue(sizList);
     }

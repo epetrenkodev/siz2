@@ -17,7 +17,7 @@ import by.epetrenkodev.siz.R;
 
 public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
     private final LayoutInflater inflater;
-    private final List<SizItem> sizList;
+    private List<SizItem> sizList;
     private final OnSizClickListener onClickListener;
     private final Context context;
     private final OnAddClickListener onClickAddListener;
@@ -84,6 +84,10 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return sizList.size() + 1;
+    }
+
+    public void update(List<SizItem> list) {
+        sizList = list;
     }
 
     interface OnSizClickListener {
