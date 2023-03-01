@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,12 +34,23 @@ public class NewSizFragment extends Fragment {
         binding.selectDateView.beginYear.setText(String.valueOf(calendar.get(Calendar.YEAR)));
         binding.selectDateView.todayButton.setOnClickListener(this::onTodayClick);
         binding.newSizAddButton.setOnClickListener(this::onAddClick);
+        binding.newSizUntilWear.setOnCheckedChangeListener(this::onUntilWearChange);
         binding.newSizAddButton.setEnabled(false);
         TextWatcher textWatcher = new Watcher();
         binding.newSizNameEdit.addTextChangedListener(textWatcher);
         binding.newSizPeriodEdit.addTextChangedListener(textWatcher);
         binding.selectDateView.beginYear.addTextChangedListener(textWatcher);
         return binding.getRoot();
+    }
+
+    private void onUntilWearChange(CompoundButton compoundButton, boolean b) {
+        if (b) {
+            binding.newSizPeriodEdit.setText("1200");
+            binding.newSizPeriodEdit.setVisibility(View.GONE);
+        } else {
+            binding.newSizPeriodEdit.setText(null);
+            binding.newSizPeriodEdit.setVisibility(View.VISIBLE);
+        }
     }
 
     private void onTodayClick(View view) {

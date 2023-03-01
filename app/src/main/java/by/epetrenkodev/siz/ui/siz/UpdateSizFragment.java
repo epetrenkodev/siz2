@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -40,10 +41,15 @@ public class UpdateSizFragment extends Fragment {
             binding.selectDateView.beginYear.setText(String.valueOf(args.getInt("year")));
             binding.updateSizPeriodEdit.setText(String.valueOf(args.getInt("period")));
             position = args.getInt("position");
+            if (args.getInt("period") >= 1200) {
+                binding.updateSizUntilWear.setChecked(true);
+                binding.updateSizPeriodEdit.setVisibility(View.GONE);
+            }
         }
         binding.selectDateView.todayButton.setOnClickListener(this::onTodayClick);
         binding.updateSizUpdateButton.setOnClickListener(this::onUpdateClick);
         binding.updateSizRemoveButton.setOnClickListener(this::onRemoveClick);
+        binding.updateSizUntilWear.setOnCheckedChangeListener(this::onUntilWearChange);
         binding.updateSizUpdateButton.setEnabled(false);
         TextWatcher textWatcher = new UpdateSizFragment.Watcher();
         binding.updateSizNameEdit.addTextChangedListener(textWatcher);
@@ -61,6 +67,16 @@ public class UpdateSizFragment extends Fragment {
             }
         });
         return binding.getRoot();
+    }
+
+    private void onUntilWearChange(CompoundButton compoundButton, boolean b) {
+        if (b) {
+            binding.updateSizPeriodEdit.setText("1200");
+            binding.updateSizPeriodEdit.setVisibility(View.GONE);
+        } else {
+            binding.updateSizPeriodEdit.setText(null);
+            binding.updateSizPeriodEdit.setVisibility(View.VISIBLE);
+        }
     }
 
     private void onRemoveClick(View view) {

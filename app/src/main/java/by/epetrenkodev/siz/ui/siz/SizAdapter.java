@@ -69,6 +69,9 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
                 case OVERDUE:
                     holder.statusView.setImageResource(R.drawable.ic_smile_red);
                     break;
+                case UNTIL_WEAR:
+                    holder.statusView.setImageResource(R.drawable.ic_smile_gray);
+                    break;
             }
             holder.itemView.setOnClickListener(view -> onSizClickListener.onSizClick(view, sizItem, position));
         }

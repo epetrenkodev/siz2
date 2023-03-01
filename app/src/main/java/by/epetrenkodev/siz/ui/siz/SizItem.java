@@ -24,6 +24,7 @@ public class SizItem {
         calendar.add(Calendar.DAY_OF_MONTH, -1);
         Date rightDate = calendar.getTime();
         Date currentDate = new Date();
+        if (period >= 1200) return Status.UNTIL_WEAR;
         if (currentDate.after(leftDate) && currentDate.before(rightDate))
             return Status.GET;
         if (getEndDate().before(new Date()))
@@ -58,5 +59,5 @@ public class SizItem {
         this.period = period;
     }
 
-    public enum Status {OVERDUE, GET, NORMAL}
+    public enum Status {OVERDUE, GET, NORMAL, UNTIL_WEAR}
 }
