@@ -10,7 +10,7 @@ public class ScheduleViewModel extends ViewModel {
 
     public ScheduleViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("График");
+        mText.setValue("Этот раздел ещё не готов");
     }
 
     public LiveData<String> getText() {

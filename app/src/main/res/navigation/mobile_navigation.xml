@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_schedule">
+    app:startDestination="@+id/nav_siz">
 
     <fragment
         android:id="@+id/nav_schedule"
@@ -20,6 +20,16 @@
     <fragment
         android:id="@+id/nav_tool"
         android:name="by.epetrenkodev.siz.ui.tool.ToolFragment"
-        android:label="@string/menu_siz"
+        android:label="@string/menu_tool"
         tools:layout="@layout/fragment_tool" />
+    <fragment
+        android:id="@+id/new_siz_fragment"
+        android:name="by.epetrenkodev.siz.ui.siz.NewSizFragment"
+        android:label="@string/add"
+        tools:layout="@layout/fragment_new_siz" />
+    <fragment
+        android:id="@+id/update_siz_fragment"
+        android:name="by.epetrenkodev.siz.ui.siz.UpdateSizFragment"
+        android:label="@string/update"
+        tools:layout="@layout/fragment_update_siz" />
 </navigation>
