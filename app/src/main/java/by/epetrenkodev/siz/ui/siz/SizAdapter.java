@@ -18,15 +18,13 @@ import by.epetrenkodev.siz.R;
 public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
     private final LayoutInflater inflater;
     private List<SizItem> sizList;
-    private final OnSizClickListener onClickListener;
+    private final OnSizClickListener onSizClickListener;
     private final Context context;
-    private final OnAddClickListener onClickAddListener;
 
-    SizAdapter(Context context, List<SizItem> sizList, OnSizClickListener onClickListener, OnAddClickListener onClickAddListener) {
+    SizAdapter(Context context, List<SizItem> sizList, OnSizClickListener onSizClickListener) {
         this.sizList = sizList;
         this.inflater = LayoutInflater.from(context);
-        this.onClickListener = onClickListener;
-        this.onClickAddListener = onClickAddListener;
+        this.onSizClickListener = onSizClickListener;
         this.context = context;
     }
 
@@ -37,7 +35,7 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
         view = inflater.inflate(viewType, parent, false);
         ViewHolder holder = new ViewHolder(view);
         if (viewType == R.layout.element_add_botton)
-            holder.addButton.setOnClickListener(onClickAddListener::onAddClick);
+            holder.addButton.setOnClickListener(onSizClickListener::onAddClick);
         return new ViewHolder(view);
     }
 
@@ -72,7 +70,7 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
                     holder.statusView.setImageResource(R.drawable.ic_smile_red);
                     break;
             }
-            holder.itemView.setOnClickListener(view -> onClickListener.onSizClick(sizItem, position));
+            holder.itemView.setOnClickListener(view -> onSizClickListener.onSizClick(sizItem, position));
         }
     }
 
@@ -92,9 +90,6 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
 
     interface OnSizClickListener {
         void onSizClick(SizItem sizItem, int position);
-    }
-
-    interface OnAddClickListener {
         void onAddClick(View view);
     }
 

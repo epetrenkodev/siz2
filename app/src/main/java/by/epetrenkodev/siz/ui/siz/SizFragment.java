@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import by.epetrenkodev.siz.R;
 import by.epetrenkodev.siz.databinding.FragmentSizBinding;
 
-public class SizFragment extends Fragment implements SizAdapter.OnAddClickListener{
+public class SizFragment extends Fragment implements SizAdapter.OnSizClickListener{
 
     private FragmentSizBinding binding;
     SizViewModel sizViewModel;
@@ -28,21 +28,24 @@ public class SizFragment extends Fragment implements SizAdapter.OnAddClickListen
         View root = binding.getRoot();
 
         sizViewModel.data.observe(getViewLifecycleOwner(), data -> adapter.update(data));
-        adapter = new SizAdapter(requireContext(), sizViewModel.data.getValue(), this::updateSiz_onClick, this);
+        adapter = new SizAdapter(requireContext(), sizViewModel.data.getValue(),  this);
         recyclerView = binding.sizList;
         recyclerView.setAdapter(adapter);
 
+        sizViewModel.loadSizList();
+
         return root;
-    }
-
-    public void updateSiz_onClick(SizItem sizItem, int position) {
-
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onSizClick(SizItem sizItem, int position) {
+
     }
 
     @Override

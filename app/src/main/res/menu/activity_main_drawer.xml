@@ -10,7 +10,7 @@
             android:title="@string/menu_schedule" />
         <item
             android:id="@+id/nav_siz"
-            android:icon="?android:attr/alertDialogIcon"
+            android:icon="@drawable/ic_siz_menu"
             android:title="@string/menu_siz" />
         <item
             android:id="@+id/nav_tool"
