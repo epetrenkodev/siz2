@@ -17,9 +17,9 @@ import by.epetrenkodev.siz.R;
 
 public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
     private final LayoutInflater inflater;
-    private List<SizItem> sizList;
     private final OnSizClickListener onSizClickListener;
     private final Context context;
+    private List<SizItem> sizList;
 
     SizAdapter(Context context, List<SizItem> sizList, OnSizClickListener onSizClickListener) {
         this.sizList = sizList;
@@ -70,7 +70,7 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
                     holder.statusView.setImageResource(R.drawable.ic_smile_red);
                     break;
             }
-            holder.itemView.setOnClickListener(view -> onSizClickListener.onSizClick(sizItem, position));
+            holder.itemView.setOnClickListener(view -> onSizClickListener.onSizClick(view, sizItem, position));
         }
     }
 
@@ -89,7 +89,8 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
     }
 
     interface OnSizClickListener {
-        void onSizClick(SizItem sizItem, int position);
+        void onSizClick(View view, SizItem sizItem, int position);
+
         void onAddClick(View view);
     }
 

@@ -8,48 +8,28 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import by.epetrenkodev.siz.R;
 import by.epetrenkodev.siz.databinding.FragmentSizBinding;
 
-public class SizFragment extends Fragment implements SizAdapter.OnSizClickListener{
+public class SizFragment extends Fragment {
 
     private FragmentSizBinding binding;
-    SizViewModel sizViewModel;
-    SizAdapter adapter;
-    RecyclerView recyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        sizViewModel = new ViewModelProvider(this).get(SizViewModel.class);
-
+        SizViewModel sizViewModel = new ViewModelProvider(this).get(SizViewModel.class);
         binding = FragmentSizBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        sizViewModel.data.observe(getViewLifecycleOwner(), data -> adapter.update(data));
-        adapter = new SizAdapter(requireContext(), sizViewModel.data.getValue(),  this);
-        recyclerView = binding.sizList;
+        SizAdapter adapter = new SizAdapter(requireContext(), sizViewModel.data.getValue(), sizViewModel);
+        sizViewModel.data.observe(getViewLifecycleOwner(), adapter::update);
+        RecyclerView recyclerView = binding.sizList;
         recyclerView.setAdapter(adapter);
-
         sizViewModel.loadSizList();
-
-        return root;
+        return binding.getRoot();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    @Override
-    public void onSizClick(SizItem sizItem, int position) {
-
-    }
-
-    @Override
-    public void onAddClick(View view) {
-        Navigation.findNavController(view).navigate(R.id.new_siz_fragment);
     }
 }

@@ -10,7 +10,7 @@ public class ToolViewModel extends ViewModel {
 
     public ToolViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Инструмент");
+        mText.setValue("Этот раздел ещё не готов");
     }
 
     public LiveData<String> getText() {

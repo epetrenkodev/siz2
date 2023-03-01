@@ -10,56 +10,52 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import java.util.Calendar;
 import java.util.Date;
 
-import by.epetrenkodev.siz.data.SizRepository;
 import by.epetrenkodev.siz.databinding.FragmentNewSizBinding;
 
 public class NewSizFragment extends Fragment {
 
+    SizViewModel sizViewModel;
     private FragmentNewSizBinding binding;
-    private Calendar calendar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        sizViewModel = new ViewModelProvider(this).get(SizViewModel.class);
         binding = FragmentNewSizBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        calendar = Calendar.getInstance();
-
+        Calendar calendar = Calendar.getInstance();
         binding.selectDateView.beginMonth.setSelection(calendar.get(Calendar.MONTH));
         binding.selectDateView.beginYear.setText(String.valueOf(calendar.get(Calendar.YEAR)));
-        binding.selectDateView.todayButton.setOnClickListener(this::todayButton_onClick);
+        binding.selectDateView.todayButton.setOnClickListener(this::onTodayClick);
         binding.newSizAddButton.setOnClickListener(this::onAddClick);
         binding.newSizAddButton.setEnabled(false);
         TextWatcher textWatcher = new Watcher();
         binding.newSizNameEdit.addTextChangedListener(textWatcher);
         binding.newSizPeriodEdit.addTextChangedListener(textWatcher);
         binding.selectDateView.beginYear.addTextChangedListener(textWatcher);
-
-        return root;
+        return binding.getRoot();
     }
 
-    private void todayButton_onClick(View view) {
-        calendar = Calendar.getInstance();
+    private void onTodayClick(View view) {
+        Calendar calendar = Calendar.getInstance();
         binding.selectDateView.beginMonth.setSelection(calendar.get(Calendar.MONTH));
         binding.selectDateView.beginYear.setText(String.valueOf(calendar.get(Calendar.YEAR)));
     }
 
-    private void onAddClick(View view)
-    {
+    private void onAddClick(View view) {
         String name = binding.newSizNameEdit.getText().toString();
         int period = Integer.parseInt(binding.newSizPeriodEdit.getText().toString());
         int month = binding.selectDateView.beginMonth.getSelectedItemPosition();
         int year = Integer.parseInt(binding.selectDateView.beginYear.getText().toString());
+        Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, 1);
         Date beginDate = calendar.getTime();
-        SizItem sizItem = new SizItem(name, beginDate, period);
-        new SizRepository().create(sizItem);
+        sizViewModel.newSiz(name, beginDate, period);
         Navigation.findNavController(view).popBackStack();
     }
 
