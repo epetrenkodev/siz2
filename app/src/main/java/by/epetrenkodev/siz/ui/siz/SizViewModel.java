@@ -44,11 +44,6 @@ public class SizViewModel extends ViewModel implements SizAdapter.OnSizClickList
         Navigation.findNavController(view).navigate(R.id.update_siz_fragment, args);
     }
 
-    @Override
-    public void onAddClick(View view) {
-        Navigation.findNavController(view).navigate(R.id.new_siz_fragment);
-    }
-
     public void newSiz(String name, Date beginDate, int period) {
         new SizRepository().create(new SizItem(name, beginDate, period));
     }
