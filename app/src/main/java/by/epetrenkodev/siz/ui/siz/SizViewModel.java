@@ -1,6 +1,7 @@
 package by.epetrenkodev.siz.ui.siz;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.lifecycle.MutableLiveData;
@@ -15,6 +16,8 @@ import by.epetrenkodev.siz.R;
 import by.epetrenkodev.siz.data.SizRepository;
 
 public class SizViewModel extends ViewModel implements SizAdapter.OnSizClickListener {
+
+    final String TAG = "123";
 
     public MutableLiveData<List<SizItem>> data = new MutableLiveData<>();
     private List<SizItem> sizList;
@@ -45,6 +48,7 @@ public class SizViewModel extends ViewModel implements SizAdapter.OnSizClickList
     }
 
     public void newSiz(String name, Date beginDate, int period) {
+        Log.d(TAG, "newSiz: " + name);
         new SizRepository().create(new SizItem(name, beginDate, period));
     }
 
