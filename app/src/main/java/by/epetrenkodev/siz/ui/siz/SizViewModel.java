@@ -65,4 +65,8 @@ public class SizViewModel extends ViewModel implements SizAdapter.OnSizClickList
         new SizRepository().create(newSizItem);
         loadSizList();
     }
+
+    public void acceptSiz() {
+
+    }
 }

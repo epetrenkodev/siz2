@@ -82,20 +82,21 @@ public class NewSizFragment extends Fragment {
             @Override
             public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.ok) {
-                    String name = binding.newSizNameEdit.getText().toString();
-                    int period = Integer.parseInt(binding.newSizPeriodEdit.getText().toString());
-                    int month = binding.selectDateView.beginMonth.getSelectedItemPosition();
-                    int year = Integer.parseInt(binding.selectDateView.beginYear.getText().toString());
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(year, month, 1);
-                    Date beginDate = calendar.getTime();
-                    sizViewModel.newSiz(name, beginDate, period);
+                    sizViewModel.acceptSiz();
+//                    String name = binding.newSizNameEdit.getText().toString();
+//                    int period = Integer.parseInt(binding.newSizPeriodEdit.getText().toString());
+//                    int month = binding.selectDateView.beginMonth.getSelectedItemPosition();
+//                    int year = Integer.parseInt(binding.selectDateView.beginYear.getText().toString());
+//                    Calendar calendar = Calendar.getInstance();
+//                    calendar.set(year, month, 1);
+//                    Date beginDate = calendar.getTime();
+//                    sizViewModel.newSiz(name, beginDate, period);
 
                     //Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main).popBackStack();
                     //Navigation.findNavController(rootView).popBackStack();
                     //NavHostFragment.findNavController(fragment).popBackStack();
-                    navController.popBackStack();
-                    Log.d(TAG, "onMenuItemSelected: end");
+                    //navController.popBackStack();
+                    //Log.d(TAG, "onMenuItemSelected: end");
                     return true;
                 }
                 return false;
