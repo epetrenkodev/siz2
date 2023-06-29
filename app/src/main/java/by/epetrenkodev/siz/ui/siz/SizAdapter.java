@@ -32,10 +32,7 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        view = inflater.inflate(viewType, parent, false);
-        ViewHolder holder = new ViewHolder(view);
-        if (viewType == R.layout.element_add_botton)
-            holder.addButton.setOnClickListener(onSizClickListener::onAddClick);
+        view = inflater.inflate(R.layout.element_siz, parent, false);
         return new ViewHolder(view);
     }
 
@@ -78,13 +75,8 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
     }
 
     @Override
-    public int getItemViewType(int position) {
-        return (position == sizList.size()) ? R.layout.element_add_botton : R.layout.element_siz;
-    }
-
-    @Override
     public int getItemCount() {
-        return sizList.size() + 1;
+        return sizList.size();
     }
 
     public void update(List<SizItem> list) {
@@ -93,8 +85,6 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
 
     interface OnSizClickListener {
         void onSizClick(View view, SizItem sizItem, int position);
-
-        void onAddClick(View view);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -102,7 +92,6 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
         final TextView nameView;
         final TextView beginDateView;
         final TextView endDateView;
-        final TextView addButton;
 
         ViewHolder(View view) {
             super(view);
@@ -110,7 +99,6 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
             nameView = view.findViewById(R.id.siz_name);
             beginDateView = view.findViewById(R.id.begin_date);
             endDateView = view.findViewById(R.id.end_date);
-            addButton = view.findViewById(R.id.add_button);
         }
     }
 }
