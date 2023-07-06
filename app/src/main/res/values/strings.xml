@@ -39,4 +39,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="until_wear">До износа</string>
+    <string name="card_count">На карточке</string>
+    <string name="real_count">В наличии</string>
 </resources>

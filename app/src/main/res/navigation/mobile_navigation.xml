@@ -10,18 +10,11 @@
         android:name="by.epetrenkodev.siz.ui.schedule.ScheduleFragment"
         android:label="@string/menu_schedule"
         tools:layout="@layout/fragment_schedule" />
-
     <fragment
         android:id="@+id/nav_siz"
         android:name="by.epetrenkodev.siz.ui.siz.SizFragment"
         android:label="@string/menu_siz"
         tools:layout="@layout/fragment_siz" />
-
-    <fragment
-        android:id="@+id/nav_tool"
-        android:name="by.epetrenkodev.siz.ui.tool.ToolFragment"
-        android:label="@string/menu_tool"
-        tools:layout="@layout/fragment_tool" />
     <fragment
         android:id="@+id/new_siz_fragment"
         android:name="by.epetrenkodev.siz.ui.siz.NewSizFragment"
@@ -32,4 +25,20 @@
         android:name="by.epetrenkodev.siz.ui.siz.UpdateSizFragment"
         android:label="@string/update"
         tools:layout="@layout/fragment_update_siz" />
+    <fragment
+        android:id="@+id/nav_tool"
+        android:name="by.epetrenkodev.siz.ui.tool.ToolFragment"
+        android:label="@string/menu_tool"
+        tools:layout="@layout/fragment_tool" />
+    <fragment
+        android:id="@+id/new_tool_fragment"
+        android:name="by.epetrenkodev.siz.ui.tool.NewToolFragment"
+        android:label="@string/add"
+        tools:layout="@layout/fragment_new_tool" />
+    <fragment
+        android:id="@+id/update_tool_fragment"
+        android:name="by.epetrenkodev.siz.ui.tool.UpdateToolFragment"
+        android:label="@string/update"
+        tools:layout="@layout/fragment_update_tool" />
+
 </navigation>
