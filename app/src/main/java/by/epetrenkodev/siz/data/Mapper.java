@@ -20,7 +20,6 @@ public class Mapper {
         return data;
     }
 
-
     public static ToolItem dataToDomain(ToolEntity item) {
         return new ToolItem(item.name, item.cardCount, item.realCount);
     }

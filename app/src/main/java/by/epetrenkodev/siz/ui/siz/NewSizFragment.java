@@ -1,9 +1,9 @@
 package by.epetrenkodev.siz.ui.siz;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,28 +17,16 @@ import androidx.annotation.Nullable;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Objects;
 
-import by.epetrenkodev.siz.R;
 import by.epetrenkodev.siz.databinding.FragmentSizNewBinding;
 
 public class NewSizFragment extends Fragment {
-    final String TAG = "123";
-
-    NavController navController;
-
     SizViewModel sizViewModel;
     private FragmentSizNewBinding binding;
-
-    private final NewSizFragment fragment = this;
-    private View rootView;
-    private boolean isAddEnabled = false;
 
     @Nullable
     @Override
@@ -64,16 +52,8 @@ public class NewSizFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         requireActivity().addMenuProvider(new MenuProvider() {
             @Override
-            public void onPrepareMenu(@NonNull Menu menu) {
-                if (menu.findItem(R.id.ok) != null)
-                    menu.findItem(R.id.ok).setEnabled(isAddEnabled);
-                MenuProvider.super.onPrepareMenu(menu);
-            }
-
-            @Override
             public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
                 menu.clear();
-                menuInflater.inflate(R.menu.new_siz_menu, menu);
             }
 
             @Override
@@ -83,6 +63,7 @@ public class NewSizFragment extends Fragment {
         });
     }
 
+    @SuppressLint("SetTextI18n")
     private void onUntilWearChange(CompoundButton compoundButton, boolean b) {
         if (b) {
             binding.sizNewPeriodEdit.setText("1200");
