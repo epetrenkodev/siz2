@@ -48,8 +48,8 @@ public class SizFragment extends Fragment {
 
             @Override
             public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.action_add) {
-                    Navigation.findNavController(rootView).navigate(R.id.new_siz_fragment);
+                if (menuItem.getItemId() == R.id.siz_action_add) {
+                    Navigation.findNavController(rootView).navigate(R.id.nav_siz_new);
                     return true;
                 }
                 return false;

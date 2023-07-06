@@ -1,5 +1,6 @@
 package by.epetrenkodev.siz.ui.siz;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,42 +25,42 @@ import java.util.Calendar;
 import java.util.Date;
 
 import by.epetrenkodev.siz.R;
-import by.epetrenkodev.siz.databinding.FragmentUpdateSizBinding;
+import by.epetrenkodev.siz.databinding.FragmentSizUpdateBinding;
 
 public class UpdateSizFragment extends Fragment {
     Bundle args;
     SizViewModel sizViewModel;
     int position;
-    private FragmentUpdateSizBinding binding;
+    private FragmentSizUpdateBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         sizViewModel = new ViewModelProvider(this).get(SizViewModel.class);
-        binding = FragmentUpdateSizBinding.inflate(inflater, container, false);
+        binding = FragmentSizUpdateBinding.inflate(inflater, container, false);
 
         args = getArguments();
         if (args != null) {
-            binding.updateSizNameEdit.setText(args.getString("name"));
-            binding.selectDateView.beginMonth.setSelection(args.getInt("month"));
-            binding.selectDateView.beginYear.setText(String.valueOf(args.getInt("year")));
-            binding.updateSizPeriodEdit.setText(String.valueOf(args.getInt("period")));
+            binding.sizUpdateNameEdit.setText(args.getString("name"));
+            binding.sizNewSelectDateView.selectDateBeginMonthCombobox.setSelection(args.getInt("month"));
+            binding.sizNewSelectDateView.selectDateBeginYearEdit.setText(String.valueOf(args.getInt("year")));
+            binding.sizUpdatePeriodEdit.setText(String.valueOf(args.getInt("period")));
             position = args.getInt("position");
             if (args.getInt("period") >= 1200) {
-                binding.updateSizUntilWear.setChecked(true);
-                binding.updateSizPeriodEdit.setVisibility(View.GONE);
+                binding.sizUpdateUntilWearCheckbox.setChecked(true);
+                binding.sizUpdatePeriodEdit.setVisibility(View.GONE);
             }
         }
-        binding.selectDateView.todayButton.setOnClickListener(this::onTodayClick);
-        binding.updateSizUpdateButton.setOnClickListener(this::onUpdateClick);
-        binding.updateSizRemoveButton.setOnClickListener(this::onRemoveClick);
-        binding.updateSizUntilWear.setOnCheckedChangeListener(this::onUntilWearChange);
-        binding.updateSizUpdateButton.setEnabled(false);
+        binding.sizNewSelectDateView.selectDateTodayButton.setOnClickListener(this::onTodayClick);
+        binding.sizUpdateUpdateButton.setOnClickListener(this::onUpdateClick);
+        binding.sizUpdateRemoveButton.setOnClickListener(this::onRemoveClick);
+        binding.sizUpdateUntilWearCheckbox.setOnCheckedChangeListener(this::onUntilWearChange);
+        binding.sizUpdateUpdateButton.setEnabled(false);
         TextWatcher textWatcher = new UpdateSizFragment.Watcher();
-        binding.updateSizNameEdit.addTextChangedListener(textWatcher);
-        binding.updateSizPeriodEdit.addTextChangedListener(textWatcher);
-        binding.selectDateView.beginYear.addTextChangedListener(textWatcher);
-        binding.selectDateView.beginMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.sizUpdateNameEdit.addTextChangedListener(textWatcher);
+        binding.sizUpdatePeriodEdit.addTextChangedListener(textWatcher);
+        binding.sizNewSelectDateView.selectDateBeginYearEdit.addTextChangedListener(textWatcher);
+        binding.sizNewSelectDateView.selectDateBeginMonthCombobox.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 new Watcher().afterTextChanged(null);
@@ -90,13 +91,14 @@ public class UpdateSizFragment extends Fragment {
         });
     }
 
+    @SuppressLint("SetTextI18n")
     private void onUntilWearChange(CompoundButton compoundButton, boolean b) {
         if (b) {
-            binding.updateSizPeriodEdit.setText("1200");
-            binding.updateSizPeriodEdit.setVisibility(View.GONE);
+            binding.sizUpdatePeriodEdit.setText("1200");
+            binding.sizUpdatePeriodEdit.setVisibility(View.GONE);
         } else {
-            binding.updateSizPeriodEdit.setText(null);
-            binding.updateSizPeriodEdit.setVisibility(View.VISIBLE);
+            binding.sizUpdatePeriodEdit.setText(null);
+            binding.sizUpdatePeriodEdit.setVisibility(View.VISIBLE);
         }
     }
 
@@ -114,10 +116,10 @@ public class UpdateSizFragment extends Fragment {
     }
 
     private void onUpdateClick(View view) {
-        String name = binding.updateSizNameEdit.getText().toString();
-        int period = Integer.parseInt(binding.updateSizPeriodEdit.getText().toString());
-        int month = binding.selectDateView.beginMonth.getSelectedItemPosition();
-        int year = Integer.parseInt(binding.selectDateView.beginYear.getText().toString());
+        String name = binding.sizUpdateNameEdit.getText().toString();
+        int period = Integer.parseInt(binding.sizUpdatePeriodEdit.getText().toString());
+        int month = binding.sizNewSelectDateView.selectDateBeginMonthCombobox.getSelectedItemPosition();
+        int year = Integer.parseInt(binding.sizNewSelectDateView.selectDateBeginYearEdit.getText().toString());
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, 1);
         Date beginDate = calendar.getTime();
@@ -127,8 +129,8 @@ public class UpdateSizFragment extends Fragment {
 
     private void onTodayClick(View view) {
         Calendar calendar = Calendar.getInstance();
-        binding.selectDateView.beginMonth.setSelection(calendar.get(Calendar.MONTH));
-        binding.selectDateView.beginYear.setText(String.valueOf(calendar.get(Calendar.YEAR)));
+        binding.sizNewSelectDateView.selectDateBeginMonthCombobox.setSelection(calendar.get(Calendar.MONTH));
+        binding.sizNewSelectDateView.selectDateBeginYearEdit.setText(String.valueOf(calendar.get(Calendar.YEAR)));
     }
 
     private class Watcher implements TextWatcher {
@@ -143,19 +145,19 @@ public class UpdateSizFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            binding.updateSizUpdateButton.setEnabled(true);
-            if (binding.updateSizNameEdit.getText().toString().isEmpty()
-                    || binding.updateSizPeriodEdit.getText().toString().isEmpty()
-                    || binding.selectDateView.beginYear.getText().toString().isEmpty()
-                    || (binding.updateSizNameEdit.getText().toString().equals(args.getString("name"))
-                    && binding.updateSizPeriodEdit.getText().toString().equals(String.valueOf(args.getInt("period")))
-                    && binding.selectDateView.beginMonth.getSelectedItemPosition() == args.getInt("month")
-                    && binding.selectDateView.beginYear.getText().toString().equals(String.valueOf(args.getInt("year"))))) {
-                binding.updateSizUpdateButton.setEnabled(false);
+            binding.sizUpdateUpdateButton.setEnabled(true);
+            if (binding.sizUpdateNameEdit.getText().toString().isEmpty()
+                    || binding.sizUpdatePeriodEdit.getText().toString().isEmpty()
+                    || binding.sizNewSelectDateView.selectDateBeginYearEdit.getText().toString().isEmpty()
+                    || (binding.sizUpdateNameEdit.getText().toString().equals(args.getString("name"))
+                    && binding.sizUpdatePeriodEdit.getText().toString().equals(String.valueOf(args.getInt("period")))
+                    && binding.sizNewSelectDateView.selectDateBeginMonthCombobox.getSelectedItemPosition() == args.getInt("month")
+                    && binding.sizNewSelectDateView.selectDateBeginYearEdit.getText().toString().equals(String.valueOf(args.getInt("year"))))) {
+                binding.sizUpdateUpdateButton.setEnabled(false);
             }
-            binding.updateSizRemoveButton.setEnabled(true);
-            if (!binding.updateSizNameEdit.getText().toString().equals(args.getString("name")))
-                binding.updateSizRemoveButton.setEnabled(false);
+            binding.sizUpdateRemoveButton.setEnabled(true);
+            if (!binding.sizUpdateNameEdit.getText().toString().equals(args.getString("name")))
+                binding.sizUpdateRemoveButton.setEnabled(false);
         }
     }
 }

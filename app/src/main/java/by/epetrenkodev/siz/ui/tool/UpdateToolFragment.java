@@ -19,34 +19,34 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import by.epetrenkodev.siz.R;
-import by.epetrenkodev.siz.databinding.FragmentUpdateToolBinding;
+import by.epetrenkodev.siz.databinding.FragmentToolUpdateBinding;
 
 public class UpdateToolFragment extends Fragment {
     Bundle args;
     ToolViewModel toolViewModel;
     int position;
-    private FragmentUpdateToolBinding binding;
+    private FragmentToolUpdateBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         toolViewModel = new ViewModelProvider(this).get(ToolViewModel.class);
-        binding = FragmentUpdateToolBinding.inflate(inflater, container, false);
+        binding = FragmentToolUpdateBinding.inflate(inflater, container, false);
 
         args = getArguments();
         if (args != null) {
-            binding.updateToolNameEdit.setText(args.getString("name"));
-            binding.updateToolCardCountEdit.setText(String.valueOf(args.getInt("cardCount")));
-            binding.updateToolRealCountEdit.setText(String.valueOf(args.getInt("realCount")));
+            binding.toolUpdateNameEdit.setText(args.getString("name"));
+            binding.toolUpdateCardCountEdit.setText(String.valueOf(args.getInt("cardCount")));
+            binding.toolUpdateRealCountEdit.setText(String.valueOf(args.getInt("realCount")));
             position = args.getInt("position");
         }
-        binding.updateToolUpdateButton.setOnClickListener(this::onUpdateClick);
-        binding.updateToolRemoveButton.setOnClickListener(this::onRemoveClick);
-        binding.updateToolUpdateButton.setEnabled(false);
+        binding.toolUpdateUpdateButton.setOnClickListener(this::onUpdateClick);
+        binding.toolUpdateRemoveButton.setOnClickListener(this::onRemoveClick);
+        binding.toolUpdateUpdateButton.setEnabled(false);
         TextWatcher textWatcher = new UpdateToolFragment.Watcher();
-        binding.updateToolNameEdit.addTextChangedListener(textWatcher);
-        binding.updateToolCardCountEdit.addTextChangedListener(textWatcher);
-        binding.updateToolRealCountEdit.addTextChangedListener(textWatcher);
+        binding.toolUpdateNameEdit.addTextChangedListener(textWatcher);
+        binding.toolUpdateCardCountEdit.addTextChangedListener(textWatcher);
+        binding.toolUpdateRealCountEdit.addTextChangedListener(textWatcher);
         return binding.getRoot();
     }
 
@@ -81,9 +81,9 @@ public class UpdateToolFragment extends Fragment {
     }
 
     private void onUpdateClick(View view) {
-        String name = binding.updateToolNameEdit.getText().toString();
-        int cardCount = Integer.parseInt(binding.updateToolCardCountEdit.getText().toString());
-        int realCount = Integer.parseInt(binding.updateToolRealCountEdit.getText().toString());
+        String name = binding.toolUpdateNameEdit.getText().toString();
+        int cardCount = Integer.parseInt(binding.toolUpdateCardCountEdit.getText().toString());
+        int realCount = Integer.parseInt(binding.toolUpdateRealCountEdit.getText().toString());
         toolViewModel.updateTool(name, cardCount, realCount, position);
         Navigation.findNavController(view).popBackStack();
     }
@@ -100,18 +100,18 @@ public class UpdateToolFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            binding.updateToolUpdateButton.setEnabled(true);
-            if (binding.updateToolNameEdit.getText().toString().isEmpty()
-                    || binding.updateToolCardCountEdit.getText().toString().isEmpty()
-                    || binding.updateToolRealCountEdit.getText().toString().isEmpty()
-                    || (binding.updateToolNameEdit.getText().toString().equals(args.getString("name"))
-                    && binding.updateToolCardCountEdit.getText().toString().equals(String.valueOf(args.getInt("cardCount")))
-                    && binding.updateToolRealCountEdit.getText().toString().equals(String.valueOf(args.getInt("realCount"))))) {
-                binding.updateToolUpdateButton.setEnabled(false);
+            binding.toolUpdateUpdateButton.setEnabled(true);
+            if (binding.toolUpdateNameEdit.getText().toString().isEmpty()
+                    || binding.toolUpdateCardCountEdit.getText().toString().isEmpty()
+                    || binding.toolUpdateRealCountEdit.getText().toString().isEmpty()
+                    || (binding.toolUpdateNameEdit.getText().toString().equals(args.getString("name"))
+                    && binding.toolUpdateCardCountEdit.getText().toString().equals(String.valueOf(args.getInt("cardCount")))
+                    && binding.toolUpdateRealCountEdit.getText().toString().equals(String.valueOf(args.getInt("realCount"))))) {
+                binding.toolUpdateUpdateButton.setEnabled(false);
             }
-            binding.updateToolRemoveButton.setEnabled(true);
-            if (!binding.updateToolNameEdit.getText().toString().equals(args.getString("name")))
-                binding.updateToolRemoveButton.setEnabled(false);
+            binding.toolUpdateRemoveButton.setEnabled(true);
+            if (!binding.toolUpdateNameEdit.getText().toString().equals(args.getString("name")))
+                binding.toolUpdateRemoveButton.setEnabled(false);
         }
     }
 }

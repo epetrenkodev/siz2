@@ -17,25 +17,25 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import by.epetrenkodev.siz.databinding.FragmentNewToolBinding;
+import by.epetrenkodev.siz.databinding.FragmentToolNewBinding;
 
 
 public class NewToolFragment extends Fragment {
     ToolViewModel toolViewModel;
-    private FragmentNewToolBinding binding;
+    private FragmentToolNewBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         toolViewModel = new ViewModelProvider(this).get(ToolViewModel.class);
-        binding = FragmentNewToolBinding.inflate(inflater, container, false);
+        binding = FragmentToolNewBinding.inflate(inflater, container, false);
 
-        binding.newToolAddButton.setOnClickListener(this::onAddClick);
-        binding.newToolAddButton.setEnabled(false);
+        binding.toolNewAddButton.setOnClickListener(this::onAddClick);
+        binding.toolNewAddButton.setEnabled(false);
         TextWatcher textWatcher = new NewToolFragment.Watcher();
-        binding.newToolNameEdit.addTextChangedListener(textWatcher);
-        binding.newToolCardCountEdit.addTextChangedListener(textWatcher);
-        binding.newToolRealCountEdit.addTextChangedListener(textWatcher);
+        binding.toolNewNameEdit.addTextChangedListener(textWatcher);
+        binding.toolNewCardCountEdit.addTextChangedListener(textWatcher);
+        binding.toolNewRealCountEdit.addTextChangedListener(textWatcher);
         return binding.getRoot();
     }
 
@@ -57,9 +57,9 @@ public class NewToolFragment extends Fragment {
     }
 
     private void onAddClick(View view) {
-        String name = binding.newToolNameEdit.getText().toString();
-        int cardCount = Integer.parseInt(binding.newToolCardCountEdit.getText().toString());
-        int realCount = Integer.parseInt(binding.newToolRealCountEdit.getText().toString());
+        String name = binding.toolNewNameEdit.getText().toString();
+        int cardCount = Integer.parseInt(binding.toolNewCardCountEdit.getText().toString());
+        int realCount = Integer.parseInt(binding.toolNewRealCountEdit.getText().toString());
         toolViewModel.newTool(name, cardCount, realCount);
         Navigation.findNavController(view).popBackStack();
     }
@@ -76,11 +76,11 @@ public class NewToolFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            binding.newToolAddButton.setEnabled(true);
-            if (binding.newToolNameEdit.getText().toString().isEmpty()
-                    || binding.newToolCardCountEdit.getText().toString().isEmpty()
-                    || binding.newToolRealCountEdit.getText().toString().isEmpty()) {
-                binding.newToolAddButton.setEnabled(false);
+            binding.toolNewAddButton.setEnabled(true);
+            if (binding.toolNewNameEdit.getText().toString().isEmpty()
+                    || binding.toolNewCardCountEdit.getText().toString().isEmpty()
+                    || binding.toolNewRealCountEdit.getText().toString().isEmpty()) {
+                binding.toolNewAddButton.setEnabled(false);
             }
         }
     }

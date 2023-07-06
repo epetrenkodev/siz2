@@ -5,22 +5,19 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Настройки</string>
 
+    <!--  Navigation drawer  -->
     <string name="menu_schedule">График</string>
     <string name="menu_siz">Спецодежда</string>
     <string name="menu_tool">Инструмент</string>
-    <string name="name">Наименование</string>
 
-    <string name="month_and_year">%1$s %2$s</string>
-    <string name="add">Добавить</string>
-
-    <string name="period">Период</string>
-    <string name="begin_date">Дата получения</string>
-    <string name="update">Обновить</string>
+    <!--  Общие  -->
     <string name="ok">OK</string>
-    <string name="remove">Удалить</string>
     <string name="cancel">Отмена</string>
+    <string name="add">Добавить</string>
+    <string name="update">Обновить</string>
+    <string name="remove">Удалить</string>
+    <string name="settings">Настройки</string>
 
     <string-array name="months">
         <item>Январь</item>
@@ -36,9 +33,21 @@
         <item>Ноябрь</item>
         <item>Декабрь</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="until_wear">До износа</string>
-    <string name="card_count">На карточке</string>
-    <string name="real_count">В наличии</string>
+
+    <!--  График  -->
+
+    <!--  Спецодежда  -->
+    <string name="siz_name">Наименование</string>
+    <string name="siz_month_and_year">%1$s %2$s</string>
+    <string name="siz_period">Период</string>
+    <string name="siz_begin_date">Дата получения</string>
+    <string name="siz_until_wear">До износа</string>
+    <string name="siz_year">Год</string>
+    <string name="siz_today">Сегодня</string>
+
+    <!--  Инструмент  -->
+    <string name="tool_name">Наименование</string>
+    <string name="tool_card_count">На карточке</string>
+    <string name="tool_real_count">В наличии</string>
+
 </resources>

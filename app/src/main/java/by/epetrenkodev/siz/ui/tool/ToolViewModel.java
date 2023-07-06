@@ -34,7 +34,7 @@ public class ToolViewModel extends ViewModel implements ToolAdapter.OnToolClickL
         args.putInt("realCount", toolItem.getRealCount());
         args.putInt("position", position);
 
-        Navigation.findNavController(view).navigate(R.id.update_tool_fragment, args);
+        Navigation.findNavController(view).navigate(R.id.nav_tool_update, args);
     }
 
     public void newTool(String name, int cardCount, int realCount) {

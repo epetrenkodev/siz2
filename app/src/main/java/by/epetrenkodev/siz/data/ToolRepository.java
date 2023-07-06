@@ -17,16 +17,16 @@ public class ToolRepository {
         dao = db.toolDao();
     }
 
+    public void create(ToolItem item) {
+        dao.insert(Mapper.domainToData(item));
+    }
+
     public List<ToolItem> read() {
         List<ToolItem> items = new ArrayList<>();
         List<ToolEntity> data = dao.getAll();
         for (ToolEntity item : data)
             items.add(Mapper.dataToDomain(item));
         return items;
-    }
-
-    public void create(ToolItem item) {
-        dao.insert(Mapper.domainToData(item));
     }
 
     public void update(ToolItem item) {

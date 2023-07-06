@@ -49,12 +49,12 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
             calendar.setTime(sizItem.getBeginDate());
             String beginMonth = months[calendar.get(Calendar.MONTH)];
             String beginYear = String.valueOf(calendar.get(Calendar.YEAR));
-            holder.beginDateView.setText(context.getString(R.string.month_and_year, beginMonth, beginYear));
+            holder.beginDateView.setText(context.getString(R.string.siz_month_and_year, beginMonth, beginYear));
 
             calendar.setTime(sizItem.getEndDate());
             String endMonth = months[calendar.get(Calendar.MONTH)];
             String endYear = String.valueOf(calendar.get(Calendar.YEAR));
-            holder.endDateView.setText(context.getString(R.string.month_and_year, endMonth, endYear));
+            holder.endDateView.setText(context.getString(R.string.siz_month_and_year, endMonth, endYear));
 
             switch (sizItem.getStatus()) {
                 case NORMAL:
@@ -95,10 +95,10 @@ public class SizAdapter extends RecyclerView.Adapter<SizAdapter.ViewHolder> {
 
         ViewHolder(View view) {
             super(view);
-            statusView = view.findViewById(R.id.status_image);
-            nameView = view.findViewById(R.id.siz_name);
-            beginDateView = view.findViewById(R.id.begin_date);
-            endDateView = view.findViewById(R.id.end_date);
+            statusView = view.findViewById(R.id.element_siz_status_image);
+            nameView = view.findViewById(R.id.element_siz_name_label);
+            beginDateView = view.findViewById(R.id.element_siz_begin_date_label);
+            endDateView = view.findViewById(R.id.element_siz_end_date_label);
         }
     }
 }

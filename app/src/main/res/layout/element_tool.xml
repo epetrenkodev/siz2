@@ -2,54 +2,55 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="8dp"
     android:layout_marginEnd="8dp">
 
     <ImageView
-        android:id="@+id/tool_status_image"
+        android:id="@+id/element_tool_status_image"
         android:layout_width="30sp"
         android:layout_height="30sp"
         android:layout_margin="5sp"
         android:src="@drawable/ic_smile_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/tool_name"
+        app:layout_constraintRight_toLeftOf="@id/element_tool_name_label"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/tool_name"
+        android:id="@+id/element_tool_name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15sp"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/tool_status_image"
+        app:layout_constraintLeft_toRightOf="@id/element_tool_status_image"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/name" />
+        tools:text="@string/tool_name" />
 
     <TextView
-        android:id="@+id/card_count"
+        android:id="@+id/element_tool_card_count_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/real_count"
-        app:layout_constraintTop_toBottomOf="@+id/tool_name"
+        app:layout_constraintRight_toLeftOf="@id/element_tool_real_count_label"
+        app:layout_constraintTop_toBottomOf="@+id/element_tool_name_label"
         tools:text="На карточке: 1" />
 
     <TextView
-        android:id="@+id/real_count"
+        android:id="@+id/element_tool_real_count_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/card_count"
+        app:layout_constraintLeft_toRightOf="@id/element_tool_card_count_label"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tool_name"
+        app:layout_constraintTop_toBottomOf="@+id/element_tool_name_label"
         tools:text="В наличии: 1" />
 
     <View
-        android:id="@+id/tool_divider"
+        android:id="@+id/element_tool_divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"

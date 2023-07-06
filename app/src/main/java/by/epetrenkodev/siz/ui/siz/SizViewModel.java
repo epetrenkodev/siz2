@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.navigation.Navigation;
 
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class SizViewModel extends ViewModel implements SizAdapter.OnSizClickList
 
     public void loadSizList() {
         sizList = new SizRepository().read();
-        sizList.sort((o1, o2) -> o1.getEndDate().compareTo(o2.getEndDate()));
+        sizList.sort(Comparator.comparing(SizItem::getEndDate));
         data.setValue(sizList);
     }
 
@@ -44,7 +45,7 @@ public class SizViewModel extends ViewModel implements SizAdapter.OnSizClickList
         args.putInt("period", sizItem.getPeriod());
         args.putInt("position", position);
 
-        Navigation.findNavController(view).navigate(R.id.update_siz_fragment, args);
+        Navigation.findNavController(view).navigate(R.id.nav_siz_update, args);
     }
 
     public void newSiz(String name, Date beginDate, int period) {

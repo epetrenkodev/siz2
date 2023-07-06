@@ -9,9 +9,9 @@ import by.epetrenkodev.siz.data.dao.ToolDao;
 import by.epetrenkodev.siz.data.entities.SizEntity;
 import by.epetrenkodev.siz.data.entities.ToolEntity;
 
-@Database(entities = {SizEntity.class, ToolEntity.class}, version = 2, autoMigrations = {@AutoMigration(from = 1, to = 2)}, exportSchema = true)
+@Database(entities = {SizEntity.class, ToolEntity.class}, version = 2, autoMigrations = {@AutoMigration(from = 1, to = 2)})
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract SizDao itemDao();
+    public abstract SizDao sizDao();
 
     public abstract ToolDao toolDao();
 }

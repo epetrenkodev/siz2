@@ -1,38 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <Spinner
-        android:id="@+id/begin_month"
+        android:id="@+id/select_date_begin_month_combobox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:dropDownWidth="wrap_content"
         android:ems="10"
         android:entries="@array/months"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/begin_year"
+        android:id="@+id/select_date_begin_year_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="4"
+        android:hint="@string/siz_year"
         android:inputType="number"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/begin_month"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toRightOf="@id/select_date_begin_month_combobox"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextFields" />
 
     <ImageButton
-        android:id="@+id/today_button"
+        android:id="@+id/select_date_today_button"
         style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:contentDescription="@string/siz_today"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/begin_year"
+        app:layout_constraintLeft_toRightOf="@id/select_date_begin_year_edit"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_menu_today" />
 

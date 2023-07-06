@@ -2,43 +2,49 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_siz">
 
+    <!--График-->
     <fragment
         android:id="@+id/nav_schedule"
         android:name="by.epetrenkodev.siz.ui.schedule.ScheduleFragment"
         android:label="@string/menu_schedule"
         tools:layout="@layout/fragment_schedule" />
+
+    <!--Спецодкжда-->
     <fragment
         android:id="@+id/nav_siz"
         android:name="by.epetrenkodev.siz.ui.siz.SizFragment"
         android:label="@string/menu_siz"
         tools:layout="@layout/fragment_siz" />
     <fragment
-        android:id="@+id/new_siz_fragment"
+        android:id="@+id/nav_siz_new"
         android:name="by.epetrenkodev.siz.ui.siz.NewSizFragment"
         android:label="@string/add"
-        tools:layout="@layout/fragment_new_siz" />
+        tools:layout="@layout/fragment_siz_new" />
     <fragment
-        android:id="@+id/update_siz_fragment"
+        android:id="@+id/nav_siz_update"
         android:name="by.epetrenkodev.siz.ui.siz.UpdateSizFragment"
         android:label="@string/update"
-        tools:layout="@layout/fragment_update_siz" />
+        tools:layout="@layout/fragment_siz_update" />
+
+    <!--Инструмент-->
     <fragment
         android:id="@+id/nav_tool"
         android:name="by.epetrenkodev.siz.ui.tool.ToolFragment"
         android:label="@string/menu_tool"
         tools:layout="@layout/fragment_tool" />
     <fragment
-        android:id="@+id/new_tool_fragment"
+        android:id="@+id/nav_tool_new"
         android:name="by.epetrenkodev.siz.ui.tool.NewToolFragment"
         android:label="@string/add"
-        tools:layout="@layout/fragment_new_tool" />
+        tools:layout="@layout/fragment_tool_new" />
     <fragment
-        android:id="@+id/update_tool_fragment"
+        android:id="@+id/nav_tool_update"
         android:name="by.epetrenkodev.siz.ui.tool.UpdateToolFragment"
         android:label="@string/update"
-        tools:layout="@layout/fragment_update_tool" />
+        tools:layout="@layout/fragment_tool_update" />
 
 </navigation>

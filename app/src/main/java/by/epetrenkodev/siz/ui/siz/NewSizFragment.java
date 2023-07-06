@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import by.epetrenkodev.siz.R;
-import by.epetrenkodev.siz.databinding.FragmentNewSizBinding;
+import by.epetrenkodev.siz.databinding.FragmentSizNewBinding;
 
 public class NewSizFragment extends Fragment {
     final String TAG = "123";
@@ -34,7 +34,7 @@ public class NewSizFragment extends Fragment {
     NavController navController;
 
     SizViewModel sizViewModel;
-    private FragmentNewSizBinding binding;
+    private FragmentSizNewBinding binding;
 
     private final NewSizFragment fragment = this;
     private View rootView;
@@ -44,21 +44,19 @@ public class NewSizFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         sizViewModel = new ViewModelProvider(this).get(SizViewModel.class);
-        binding = FragmentNewSizBinding.inflate(inflater, container, false);
+        binding = FragmentSizNewBinding.inflate(inflater, container, false);
         Calendar calendar = Calendar.getInstance();
-        binding.selectDateView.beginMonth.setSelection(calendar.get(Calendar.MONTH));
-        binding.selectDateView.beginYear.setText(String.valueOf(calendar.get(Calendar.YEAR)));
-        binding.selectDateView.todayButton.setOnClickListener(this::onTodayClick);
-        binding.newSizUntilWear.setOnCheckedChangeListener(this::onUntilWearChange);
+        binding.sizNewSelectDateView.selectDateBeginMonthCombobox.setSelection(calendar.get(Calendar.MONTH));
+        binding.sizNewSelectDateView.selectDateBeginYearEdit.setText(String.valueOf(calendar.get(Calendar.YEAR)));
+        binding.sizNewSelectDateView.selectDateTodayButton.setOnClickListener(this::onTodayClick);
+        binding.sizNewAddButton.setOnClickListener(this::onAddClick);
+        binding.sizNewUntilWearCheckbox.setOnCheckedChangeListener(this::onUntilWearChange);
+        binding.sizNewAddButton.setEnabled(false);
         TextWatcher textWatcher = new Watcher();
-        binding.newSizNameEdit.addTextChangedListener(textWatcher);
-        binding.newSizPeriodEdit.addTextChangedListener(textWatcher);
-        binding.selectDateView.beginYear.addTextChangedListener(textWatcher);
-        rootView = binding.getRoot();
-
-        navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main);
-
-        return rootView;
+        binding.sizNewNameEdit.addTextChangedListener(textWatcher);
+        binding.sizNewPeriodEdit.addTextChangedListener(textWatcher);
+        binding.sizNewSelectDateView.selectDateBeginYearEdit.addTextChangedListener(textWatcher);
+        return binding.getRoot();
     }
 
     @Override
@@ -70,7 +68,6 @@ public class NewSizFragment extends Fragment {
                 if (menu.findItem(R.id.ok) != null)
                     menu.findItem(R.id.ok).setEnabled(isAddEnabled);
                 MenuProvider.super.onPrepareMenu(menu);
-                Log.d(TAG, "onPrepareMenu: " + binding.newSizNameEdit.getText().toString());
             }
 
             @Override
@@ -81,24 +78,6 @@ public class NewSizFragment extends Fragment {
 
             @Override
             public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
-                if (menuItem.getItemId() == R.id.ok) {
-                    sizViewModel.acceptSiz();
-//                    String name = binding.newSizNameEdit.getText().toString();
-//                    int period = Integer.parseInt(binding.newSizPeriodEdit.getText().toString());
-//                    int month = binding.selectDateView.beginMonth.getSelectedItemPosition();
-//                    int year = Integer.parseInt(binding.selectDateView.beginYear.getText().toString());
-//                    Calendar calendar = Calendar.getInstance();
-//                    calendar.set(year, month, 1);
-//                    Date beginDate = calendar.getTime();
-//                    sizViewModel.newSiz(name, beginDate, period);
-
-                    //Navigation.findNavController(requireActivity(), R.id.nav_host_fragment_content_main).popBackStack();
-                    //Navigation.findNavController(rootView).popBackStack();
-                    //NavHostFragment.findNavController(fragment).popBackStack();
-                    //navController.popBackStack();
-                    //Log.d(TAG, "onMenuItemSelected: end");
-                    return true;
-                }
                 return false;
             }
         });
@@ -106,25 +85,25 @@ public class NewSizFragment extends Fragment {
 
     private void onUntilWearChange(CompoundButton compoundButton, boolean b) {
         if (b) {
-            binding.newSizPeriodEdit.setText("1200");
-            binding.newSizPeriodEdit.setVisibility(View.GONE);
+            binding.sizNewPeriodEdit.setText("1200");
+            binding.sizNewPeriodEdit.setVisibility(View.GONE);
         } else {
-            binding.newSizPeriodEdit.setText(null);
-            binding.newSizPeriodEdit.setVisibility(View.VISIBLE);
+            binding.sizNewPeriodEdit.setText(null);
+            binding.sizNewPeriodEdit.setVisibility(View.VISIBLE);
         }
     }
 
     private void onTodayClick(View view) {
         Calendar calendar = Calendar.getInstance();
-        binding.selectDateView.beginMonth.setSelection(calendar.get(Calendar.MONTH));
-        binding.selectDateView.beginYear.setText(String.valueOf(calendar.get(Calendar.YEAR)));
+        binding.sizNewSelectDateView.selectDateBeginMonthCombobox.setSelection(calendar.get(Calendar.MONTH));
+        binding.sizNewSelectDateView.selectDateBeginYearEdit.setText(String.valueOf(calendar.get(Calendar.YEAR)));
     }
 
     private void onAddClick(View view) {
-        String name = binding.newSizNameEdit.getText().toString();
-        int period = Integer.parseInt(binding.newSizPeriodEdit.getText().toString());
-        int month = binding.selectDateView.beginMonth.getSelectedItemPosition();
-        int year = Integer.parseInt(binding.selectDateView.beginYear.getText().toString());
+        String name = binding.sizNewNameEdit.getText().toString();
+        int period = Integer.parseInt(binding.sizNewPeriodEdit.getText().toString());
+        int month = binding.sizNewSelectDateView.selectDateBeginMonthCombobox.getSelectedItemPosition();
+        int year = Integer.parseInt(binding.sizNewSelectDateView.selectDateBeginYearEdit.getText().toString());
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month, 1);
         Date beginDate = calendar.getTime();
@@ -144,10 +123,12 @@ public class NewSizFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            isAddEnabled = !(binding.newSizNameEdit.getText().toString().isEmpty()
-                    || binding.newSizPeriodEdit.getText().toString().isEmpty()
-                    || binding.selectDateView.beginYear.getText().toString().isEmpty());
-            requireActivity().invalidateOptionsMenu();
+            binding.sizNewAddButton.setEnabled(true);
+            if (binding.sizNewNameEdit.getText().toString().isEmpty()
+                    || binding.sizNewPeriodEdit.getText().toString().isEmpty()
+                    || binding.sizNewSelectDateView.selectDateBeginYearEdit.getText().toString().isEmpty()) {
+                binding.sizNewAddButton.setEnabled(false);
+            }
         }
     }
 }

@@ -6,7 +6,7 @@ import java.util.Date;
 public class SizItem {
 
     private final Date beginDate;
-    private int period;
+    private final int period;
     private String name;
 
     public SizItem(String name, Date beginDate, int period) {
@@ -53,10 +53,6 @@ public class SizItem {
 
     public int getPeriod() {
         return period;
-    }
-
-    public void setPeriod(int period) {
-        this.period = period;
     }
 
     public enum Status {OVERDUE, GET, NORMAL, UNTIL_WEAR}
