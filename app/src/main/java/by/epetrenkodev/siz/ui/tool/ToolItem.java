@@ -2,8 +2,8 @@ package by.epetrenkodev.siz.ui.tool;
 
 public class ToolItem {
     private String name;
-    private int cardCount;
-    private int realCount;
+    private final int cardCount;
+    private final int realCount;
 
     public ToolItem(String name, int cardCount, int realCount) {
         this.name = name;
@@ -23,16 +23,8 @@ public class ToolItem {
         return cardCount;
     }
 
-    public void setCardCount(int cardCount) {
-        this.cardCount = cardCount;
-    }
-
     public int getRealCount() {
         return realCount;
-    }
-
-    public void setRealCount(int realCount) {
-        this.realCount = realCount;
     }
 
     public int getTotal() {

@@ -48,7 +48,7 @@ public class ToolFragment extends Fragment {
             @Override
             public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.tool_action_add) {
-                    Navigation.findNavController(rootView).navigate(R.id.new_tool_fragment);
+                    Navigation.findNavController(rootView).navigate(R.id.nav_tool_new);
                     return true;
                 }
                 return false;

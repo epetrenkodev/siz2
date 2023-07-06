@@ -9,13 +9,16 @@ import by.epetrenkodev.siz.data.entities.SizEntity;
 import by.epetrenkodev.siz.ui.siz.SizItem;
 
 public class SizRepository {
-
     AppDatabase db;
     SizDao dao;
 
     public SizRepository() {
         db = App.getInstance().getDatabase();
-        dao = db.itemDao();
+        dao = db.sizDao();
+    }
+
+    public void create(SizItem item) {
+        dao.insert(Mapper.domainToData(item));
     }
 
     public List<SizItem> read() {
@@ -24,10 +27,6 @@ public class SizRepository {
         for (SizEntity item : data)
             items.add(Mapper.dataToDomain(item));
         return items;
-    }
-
-    public void create(SizItem item) {
-        dao.insert(Mapper.domainToData(item));
     }
 
     public void update(SizItem item) {

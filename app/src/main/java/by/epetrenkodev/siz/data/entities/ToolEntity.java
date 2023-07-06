@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 public class ToolEntity {
     @NonNull
     @PrimaryKey
-    public String name;
+    public String name = "";
     public int cardCount;
     public int realCount;
 }

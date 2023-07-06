@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 public class SizEntity {
     @NonNull
     @PrimaryKey
-    public String name;
+    public String name = "";
     public String date;
     public int period;
 }

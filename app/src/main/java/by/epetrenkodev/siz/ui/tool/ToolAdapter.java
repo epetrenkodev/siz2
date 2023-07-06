@@ -43,8 +43,8 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
             ToolItem toolItem = toolList.get(position);
 
             holder.nameView.setText(toolItem.getName());
-            holder.cardCountView.setText(context.getResources().getText(R.string.card_count) + " " + toolItem.getCardCount());
-            holder.realCountView.setText(context.getResources().getText(R.string.real_count) + " " + toolItem.getRealCount());
+            holder.cardCountView.setText(context.getResources().getText(R.string.tool_card_count) + " " + toolItem.getCardCount());
+            holder.realCountView.setText(context.getResources().getText(R.string.tool_real_count) + " " + toolItem.getRealCount());
             if (toolItem.getTotal() == 0)
                 holder.statusView.setImageResource(R.drawable.ic_smile_green);
             else if (toolItem.getTotal() > 0)
@@ -77,10 +77,10 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
 
         ViewHolder(View view) {
             super(view);
-            statusView = view.findViewById(R.id.tool_status_image);
-            nameView = view.findViewById(R.id.tool_name);
-            cardCountView = view.findViewById(R.id.card_count);
-            realCountView = view.findViewById(R.id.real_count);
+            statusView = view.findViewById(R.id.element_tool_status_image);
+            nameView = view.findViewById(R.id.element_tool_name_label);
+            cardCountView = view.findViewById(R.id.element_tool_card_count_label);
+            realCountView = view.findViewById(R.id.element_tool_real_count_label);
         }
     }
 }
