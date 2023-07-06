@@ -3,19 +3,14 @@ package by.epetrenkodev.siz.ui.tool;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.navigation.Navigation;
 
-import java.util.Calendar;
 import java.util.List;
 
 import by.epetrenkodev.siz.R;
-import by.epetrenkodev.siz.data.SizRepository;
 import by.epetrenkodev.siz.data.ToolRepository;
-import by.epetrenkodev.siz.ui.siz.SizAdapter;
-import by.epetrenkodev.siz.ui.siz.SizItem;
 
 public class ToolViewModel extends ViewModel implements ToolAdapter.OnToolClickListener {
 
@@ -40,5 +35,23 @@ public class ToolViewModel extends ViewModel implements ToolAdapter.OnToolClickL
         args.putInt("position", position);
 
         Navigation.findNavController(view).navigate(R.id.update_tool_fragment, args);
+    }
+
+    public void newTool(String name, int cardCount, int realCount) {
+        new ToolRepository().create(new ToolItem(name, cardCount, realCount));
+    }
+
+    public void removeTool(int position) {
+        ToolItem toolItem = toolList.get(position);
+        new ToolRepository().delete(toolItem);
+        loadToolList();
+    }
+
+    public void updateTool(String name, int cardCount, int realCount, int position) {
+        ToolItem newToolItem = new ToolItem(name, cardCount, realCount);
+        ToolItem removeToolItem = toolList.get(position);
+        new ToolRepository().delete(removeToolItem);
+        new ToolRepository().create(newToolItem);
+        loadToolList();
     }
 }

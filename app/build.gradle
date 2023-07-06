@@ -10,8 +10,13 @@ android {
         applicationId "by.epetrenkodev.siz"
         minSdk 24
         targetSdk 33
-        versionCode 4
-        versionName "2.0"
+        versionCode 5
+        versionName "2.1"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -39,7 +44,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
 
-    def room_version = "2.4.0"
+    def room_version = "2.5.0"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 }

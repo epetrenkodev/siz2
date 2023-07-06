@@ -31,6 +31,11 @@
         android:label="@string/menu_tool"
         tools:layout="@layout/fragment_tool" />
     <fragment
+        android:id="@+id/new_tool_fragment"
+        android:name="by.epetrenkodev.siz.ui.tool.NewToolFragment"
+        android:label="@string/add"
+        tools:layout="@layout/fragment_new_tool" />
+    <fragment
         android:id="@+id/update_tool_fragment"
         android:name="by.epetrenkodev.siz.ui.tool.UpdateToolFragment"
         android:label="@string/update"

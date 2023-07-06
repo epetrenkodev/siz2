@@ -1,7 +1,5 @@
 package by.epetrenkodev.siz.data;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +18,6 @@ public class ToolRepository {
     }
 
     public List<ToolItem> read() {
-        Log.d("123", "read: ");
         List<ToolItem> items = new ArrayList<>();
         List<ToolEntity> data = dao.getAll();
         for (ToolEntity item : data)

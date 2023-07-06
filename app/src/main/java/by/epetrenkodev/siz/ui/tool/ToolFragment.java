@@ -13,8 +13,10 @@ import androidx.annotation.Nullable;
 import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import by.epetrenkodev.siz.R;
 import by.epetrenkodev.siz.databinding.FragmentToolBinding;
 
 public class ToolFragment extends Fragment {
@@ -31,16 +33,6 @@ public class ToolFragment extends Fragment {
         toolViewModel.loadToolList();
         rootView = binding.getRoot();
         return rootView;
-
-
-//        ToolViewModel toolViewModel = new ViewModelProvider(this).get(ToolViewModel.class);
-//
-//        binding = FragmentToolBinding.inflate(inflater, container, false);
-//        View root = binding.getRoot();
-//
-////        final TextView textView = binding.textTool;
-////        toolViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-//        return root;
     }
 
     @Override
@@ -50,11 +42,15 @@ public class ToolFragment extends Fragment {
             @Override
             public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
                 menu.clear();
-                //menuInflater.inflate(R.menu.siz_menu, menu);
+                menuInflater.inflate(R.menu.tool_menu, menu);
             }
 
             @Override
             public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+                if (menuItem.getItemId() == R.id.tool_action_add) {
+                    Navigation.findNavController(rootView).navigate(R.id.new_tool_fragment);
+                    return true;
+                }
                 return false;
             }
         });

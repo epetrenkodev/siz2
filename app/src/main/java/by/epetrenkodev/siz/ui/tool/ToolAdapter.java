@@ -1,5 +1,6 @@
 package by.epetrenkodev.siz.ui.tool;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +16,16 @@ import java.util.List;
 import by.epetrenkodev.siz.R;
 
 public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
+    private final Context context;
     private final LayoutInflater inflater;
     private final ToolAdapter.OnToolClickListener onToolClickListener;
-    //private final Context context;
     private List<ToolItem> toolList;
 
     ToolAdapter(Context context, List<ToolItem> toolList, ToolAdapter.OnToolClickListener onToolClickListener) {
+        this.context = context;
         this.toolList = toolList;
         this.inflater = LayoutInflater.from(context);
         this.onToolClickListener = onToolClickListener;
-        //this.context = context;
     }
 
     @NonNull
@@ -35,15 +36,15 @@ public class ToolAdapter extends RecyclerView.Adapter<ToolAdapter.ViewHolder> {
         return new ToolAdapter.ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ToolAdapter.ViewHolder holder, int position) {
         if (position != toolList.size()) {
             ToolItem toolItem = toolList.get(position);
 
             holder.nameView.setText(toolItem.getName());
-            holder.cardCountView.setText(toolItem.getCardCount());
-            holder.realCountView.setText(toolItem.getRealCount());
-
+            holder.cardCountView.setText(context.getResources().getText(R.string.card_count) + " " + toolItem.getCardCount());
+            holder.realCountView.setText(context.getResources().getText(R.string.real_count) + " " + toolItem.getRealCount());
             if (toolItem.getTotal() == 0)
                 holder.statusView.setImageResource(R.drawable.ic_smile_green);
             else if (toolItem.getTotal() > 0)

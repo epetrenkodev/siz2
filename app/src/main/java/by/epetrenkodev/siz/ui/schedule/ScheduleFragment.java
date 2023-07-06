@@ -15,7 +15,6 @@ import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import by.epetrenkodev.siz.R;
 import by.epetrenkodev.siz.databinding.FragmentScheduleBinding;
 
 public class ScheduleFragment extends Fragment {
