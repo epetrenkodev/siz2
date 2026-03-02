@@ -39,7 +39,7 @@
     <!--  Спецодежда  -->
     <string name="siz_name">Наименование</string>
     <string name="siz_month_and_year">%1$s %2$s</string>
-    <string name="siz_period">Период</string>
+    <string name="siz_period">Срок в месяцах</string>
     <string name="siz_begin_date">Дата получения</string>
     <string name="siz_until_wear">До износа</string>
     <string name="siz_year">Год</string>
