@@ -7,10 +7,12 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.navigation.Navigation;
 
+import java.util.Comparator;
 import java.util.List;
 
 import by.epetrenkodev.siz.R;
 import by.epetrenkodev.siz.data.ToolRepository;
+import by.epetrenkodev.siz.ui.siz.SizItem;
 
 public class ToolViewModel extends ViewModel implements ToolAdapter.OnToolClickListener {
 
@@ -23,6 +25,7 @@ public class ToolViewModel extends ViewModel implements ToolAdapter.OnToolClickL
 
     public void loadToolList() {
         toolList = new ToolRepository().read();
+        toolList.sort(Comparator.comparing(ToolItem::getName));
         data.setValue(toolList);
     }
 
